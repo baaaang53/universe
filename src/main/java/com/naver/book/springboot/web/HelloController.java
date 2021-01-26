@@ -21,6 +21,7 @@ public class HelloController {
     // 이거는 HelloResponseDto를 반환한 것. 이것도 데이터의 형태. 이렇게 적응하는 게 좋다.
 
     @GetMapping("/seungyeon")
-    public String sy() {return "승연이";}
+    public String sy() {return "승연";}
+    public String sy2() {return "이것도 나오나요?";} //안나옴. getmapping 하나당 하나.
 
 }
