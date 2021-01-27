@@ -26,10 +26,10 @@ public class PostsService {
 
     @Transactional
     public Long update(Long id, PostsUpdateRequestDto requestDto) {
-        Posts posts = postsRepository.findById(id)
+        Posts posts = postsRepository.findById(id) // 해당 게시글을 불러와서
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. Id = " + id));
 
-        posts.update(requestDto.getTitle(), requestDto.getContent());
+        posts.update(requestDto.getTitle(), requestDto.getContent()); // 업데이트
 
         return id;
     }
