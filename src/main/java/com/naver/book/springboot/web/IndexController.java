@@ -1,5 +1,6 @@
 package com.naver.book.springboot.web;
 
+import com.naver.book.springboot.config.auth.LoginUser;
 import com.naver.book.springboot.config.auth.dto.SessionUser;
 import com.naver.book.springboot.service.posts.PostsService;
 import com.naver.book.springboot.web.dto.PostsResponseDto;
@@ -17,17 +18,11 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
     private final PostsService postsService;
-    private final HttpSession httpSession;
+//    private final HttpSession httpSession;
 
-//    @GetMapping("/")
-//    public String index() { // 앞뒤로 알아서 붙어서 src/main/resources/templates/index.mustache가 된다.
-//        return "index"; // 기본 8080에서 index.mastache를 호출하게 된 것.
-//    }
-//
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc()); // 모든 데이터 가져다가 넘겨줌
-        SessionUser user = (SessionUser) httpSession.getAttribute("user"); // 로그인 성공시 세션에 SessionUser를 저장하도록.
 
         if (user != null) { // 세션에 저장된 값이 있을 때에만 model에 userName으로 등록. 아무도 없으면 로그인 버튼만 보인다.
             model.addAttribute("userName", user.getName());
