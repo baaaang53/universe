@@ -2,25 +2,25 @@ package com.naver.book.springboot.web.domain.posts;
 
 import com.naver.book.springboot.domain.posts.Posts;
 import com.naver.book.springboot.domain.posts.PostsRepository;
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class PostsRepositoryTest {
 
     @Autowired
     PostsRepository postsRepository;
 
-    @After // 단위 테스트 끝나고 실행되는 메소드. 데이터 침범 막기 위해 사용 ㅍ ㅠ
+    @AfterEach // 단위 테스트 끝나고 실행되는 메소드. 데이터 침범 막기 위해 사용 ㅍ ㅠ
     public void cleanup() {
         // 이게 after에 실행되는 함수
         postsRepository.deleteAll();

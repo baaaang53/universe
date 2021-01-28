@@ -1,12 +1,14 @@
 package com.naver.book.springboot.web;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-//import org.junit.jupiter.api.extension.ExtendWith;
+import com.naver.book.springboot.config.auth.SecurityConfig;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.junit4.SpringRunner;
-//import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.is;
@@ -17,15 +19,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 
-//@ExtendWith(SpringExtension.class)    // 스프링 부트 테스트와 JUnit 연결자.
-@RunWith(SpringRunner.class)
-@WebMvcTest
+@ExtendWith(SpringExtension.class)
+//@WebMvcTest
+@WebMvcTest(controllers = HelloController.class, excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)
+})
 //@WebMvcTest(controllers = HelloController.class)    // web에 집중하는 annot. @Controller를 사용할 수 있도록.
 public class HelloControllerTest {
 
     @Autowired
     private MockMvc mvc; // 웹 API 테스트할 때 사용. 스프링 mvc 테스트의 시작점. 이걸로 HTTP GET, POST 등에 대한 테스트 가능
 
+    @WithMockUser(roles="USER")
     @Test
     public void hello가_리턴된다() throws Exception {
         String answer = "hello";
@@ -35,7 +40,7 @@ public class HelloControllerTest {
                 .andExpect(content().string(answer));
     }
 
-
+    @WithMockUser(roles="USER")
     @Test
     public void helloDto가_리턴된다() throws Exception {
         String name = "hello";

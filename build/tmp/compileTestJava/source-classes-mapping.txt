@@ -1,0 +1,10 @@
+com/naver/book/springboot/web/IndexControllerTest.java
+ com.naver.book.springboot.web.IndexControllerTest
+com/naver/book/springboot/web/dto/HelloResponseDtoTest.java
+ com.naver.book.springboot.web.dto.HelloResponseDtoTest
+com/naver/book/springboot/web/domain/posts/PostsRepositoryTest.java
+ com.naver.book.springboot.web.domain.posts.PostsRepositoryTest
+com/naver/book/springboot/web/PostsApiControllerTest.java
+ com.naver.book.springboot.web.PostsApiControllerTest
+com/naver/book/springboot/web/HelloControllerTest.java
+ com.naver.book.springboot.web.HelloControllerTest
