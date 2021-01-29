@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 // 페이지에 관련된 컨트롤러는 모두 여기
 
 @RequiredArgsConstructor
-@Controller
+@Controller // 그럼 얘는 왜 ResponseController를 안 쓰지?
 public class IndexController {
     private final PostsService postsService;
 //    private final HttpSession httpSession;
